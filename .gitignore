@@ -1,4 +1,6 @@
 *.class
+iblog_google_ds.iml
+target/
 
 # Package Files #
 *.jar
