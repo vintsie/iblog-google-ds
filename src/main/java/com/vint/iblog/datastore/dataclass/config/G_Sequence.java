@@ -8,6 +8,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
+ *
+ *
  * Created by Vin on 14-2-17.
  */
 @PersistenceCapable
