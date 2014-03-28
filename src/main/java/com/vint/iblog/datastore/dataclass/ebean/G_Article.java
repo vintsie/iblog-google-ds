@@ -9,9 +9,11 @@ import javax.jdo.annotations.PrimaryKey;
 import java.util.Date;
 
 /**
+ *
  * Created by Vin on 14-2-17.
  */
 @PersistenceCapable
+@SuppressWarnings("unused")
 public class G_Article {
 
     @PrimaryKey

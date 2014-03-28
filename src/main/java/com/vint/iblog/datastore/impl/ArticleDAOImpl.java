@@ -3,6 +3,7 @@ package com.vint.iblog.datastore.impl;
 import com.vint.iblog.datastore.PMF;
 import com.vint.iblog.datastore.dataclass.ebean.G_Article;
 import com.vint.iblog.datastore.define.ArticleDAO;
+import org.vint.iblog.common.bean.nor.CBNArticle;
 
 import javax.jdo.PersistenceManager;
 import java.util.Date;
@@ -34,5 +35,14 @@ public class ArticleDAOImpl implements ArticleDAO {
             pm.close();
         }
         return "";
+    }
+
+    @Override
+    public CBNArticle getArticle(String hCode) throws Exception {
+        CBNArticle article = new CBNArticle();
+        article.setContent("测试内容 Test Content 111999");
+        article.setTitle("马航失联航班 Lost马航失联航班 Lost");
+        article.sethCode(hCode);
+        return article;
     }
 }
