@@ -21,12 +21,12 @@ public class ArticleDAOImpl implements ArticleDAO {
     }
 
     @Override
-    public String postNewArticle(String title, String writer, String blogSeq) throws Exception {
+    public String postNewArticle(String title, String content, String writer, String blogSeq) throws Exception {
         G_Article article = new G_Article();
         article.setTitle(title);
         article.setWriter(writer);
-        article.setCreateDate(new Date(System.currentTimeMillis()));
-
+        article.setCreateDate(new Date());
+        article.setContent(content);
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         try {

@@ -19,6 +19,17 @@ public class G_StaticData {
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
 
+    //public String getDataGroup() {
+    //    return DataGroup;
+    //}
+
+    //public void setDataGroup(String dataGroup) {
+    //    DataGroup = dataGroup;
+    //}
+
+    //@Persistent
+    //private String DataGroup;
+
     @Persistent
     private String DataType;
 

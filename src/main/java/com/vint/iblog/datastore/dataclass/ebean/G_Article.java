@@ -23,6 +23,17 @@ public class G_Article {
     @Persistent
     private String title;
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Persistent
+    private String content;
+
     @Persistent
     private String blogSeq;
 
