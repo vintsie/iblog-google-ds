@@ -79,6 +79,7 @@ public class StaticDataDAOImpl implements StaticDataDAO {
     public void newStaticData(String dataType, String dataValue) throws Exception {
         G_StaticData g_staticData = new G_StaticData();
         g_staticData.setDataType(dataType);
+        //g_staticData.setDataGroup(dataGroup);
         g_staticData.setDataValue(dataValue);
         g_staticData.setState(StateConst.STATE_VALID);
 

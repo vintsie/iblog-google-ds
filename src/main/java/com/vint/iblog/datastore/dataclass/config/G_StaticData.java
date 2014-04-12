@@ -12,11 +12,23 @@ import javax.jdo.annotations.PrimaryKey;
  * Created by Vin on 14-2-17.
  */
 @PersistenceCapable
+@SuppressWarnings("unused")
 public class G_StaticData {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
+
+    //public String getDataGroup() {
+    //    return DataGroup;
+    //}
+
+    //public void setDataGroup(String dataGroup) {
+    //    DataGroup = dataGroup;
+    //}
+
+    //@Persistent
+    //private String DataGroup;
 
     @Persistent
     private String DataType;
