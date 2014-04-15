@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class SequenceManagerDAOImpl implements SequenceManagerDAO {
 
+
     @Override
     public String getCurrentSeq(String type) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -22,6 +23,7 @@ public class SequenceManagerDAOImpl implements SequenceManagerDAO {
         query.setFilter("Type == inType");
         query.declareParameters("String inType");
         try {
+            @SuppressWarnings("unchecked")
             List<G_Sequence> obj = (List<G_Sequence>) query.execute(type);
             if (!obj.isEmpty()) {
                 return obj.get(0).getHexMark();
@@ -45,7 +47,6 @@ public class SequenceManagerDAOImpl implements SequenceManagerDAO {
     @Override
     public void createSequence(String type, String hexMark) throws Exception {
         G_Sequence g_sequence = new G_Sequence();
-        g_sequence.setDecCount(0);
         g_sequence.setHexMark(hexMark);
         g_sequence.setType(type);
 
@@ -57,15 +58,18 @@ public class SequenceManagerDAOImpl implements SequenceManagerDAO {
         query.declareParameters("String inType");
 
         try {
+            @SuppressWarnings("unchecked")
             List<G_Sequence> g_sequences = (List<G_Sequence>) query.execute(type);
             if (!g_sequences.isEmpty()) {
-                for (G_Sequence gs : g_sequences)
-                    pm.deletePersistent(gs);
+                for (G_Sequence gs : g_sequences){
+                    gs.setHexMark(hexMark);
+                    pm.makePersistent(gs);
+                }
+            }else{
+                pm.makePersistent(g_sequence);
             }
-            pm.makePersistent(g_sequence);
         } finally {
             pm.close();
         }
-
     }
 }

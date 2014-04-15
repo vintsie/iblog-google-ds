@@ -22,8 +22,6 @@ public class G_Sequence {
     @Persistent
     private String Type;
     @Persistent
-    private int DecCount;
-    @Persistent
     private String HexMark;
 
     public String getType() {
@@ -32,14 +30,6 @@ public class G_Sequence {
 
     public void setType(String type) {
         Type = type;
-    }
-
-    public int getDecCount() {
-        return DecCount;
-    }
-
-    public void setDecCount(int decCount) {
-        DecCount = decCount;
     }
 
     public String getHexMark() {

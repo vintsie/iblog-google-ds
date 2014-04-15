@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="google-app-engine" name="Google App Engine">
       <configuration>
-        <sdk-home-path>D:/appengine-java-sdk-1.8.9</sdk-home-path>
+        <sdk-home-path>D:/appengine-java-sdk-1.9.2</sdk-home-path>
         <run-enhancer-on-make>true</run-enhancer-on-make>
         <files-to-enhance>
           <file path="$MODULE_DIR$/src/main/java/com/vint/iblog/datastore/dataclass" />
