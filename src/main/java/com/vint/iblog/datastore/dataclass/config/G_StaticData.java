@@ -19,16 +19,17 @@ public class G_StaticData {
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
 
-    //public String getDataGroup() {
-    //    return DataGroup;
-    //}
 
-    //public void setDataGroup(String dataGroup) {
-    //    DataGroup = dataGroup;
-    //}
+    public int getSort() {
+        return Sort;
+    }
 
-    //@Persistent
-    //private String DataGroup;
+    public void setSort(int sort) {
+        this.Sort = sort;
+    }
+
+    @Persistent
+    private int Sort;
 
     @Persistent
     private String DataType;

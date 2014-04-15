@@ -76,10 +76,10 @@ public class StaticDataDAOImpl implements StaticDataDAO {
     }
 
     @Override
-    public void newStaticData(String dataType, String dataValue) throws Exception {
+    public void newStaticData(String dataType, String dataValue, int sort) throws Exception {
         G_StaticData g_staticData = new G_StaticData();
         g_staticData.setDataType(dataType);
-        //g_staticData.setDataGroup(dataGroup);
+        g_staticData.setSort(sort);
         g_staticData.setDataValue(dataValue);
         g_staticData.setState(StateConst.STATE_VALID);
 
