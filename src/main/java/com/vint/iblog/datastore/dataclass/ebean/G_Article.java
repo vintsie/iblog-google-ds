@@ -1,6 +1,8 @@
 package com.vint.iblog.datastore.dataclass.ebean;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
+import org.vint.iblog.common.bean.nor.CBNArticle;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -13,7 +15,6 @@ import java.util.Date;
  * Created by Vin on 14-2-17.
  */
 @PersistenceCapable
-@SuppressWarnings("unused")
 public class G_Article {
 
     @PrimaryKey
@@ -22,29 +23,47 @@ public class G_Article {
 
     @Persistent
     private String title;
+    @Persistent
+    private Text content;
+    @Persistent
+    private Text mdContent;
+    @Persistent
+    private String sha;
+    @Persistent
+    private String blogSeq;
+    @Persistent
+    private String writer;
+    @Persistent
+    private int viewCount;
+    @Persistent
+    private Date createDate;
+    @Persistent
+    private String repoInfo;
 
     public String getContent() {
-        return content;
+        return content.toString();
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = new Text(content);
     }
 
-    @Persistent
-    private String content;
 
-    @Persistent
-    private String blogSeq;
+    public String getMdContent() {
+        return mdContent.toString();
+    }
 
-    @Persistent
-    private String writer;
+    public void setMdContent(String mdContent) {
+        this.mdContent = new Text(mdContent);
+    }
 
-    @Persistent
-    private int viewCount;
+    public String getSha() {
+        return sha;
+    }
 
-    @Persistent
-    private Date createDate;
+    public void setSha(String sha) {
+        this.sha = sha;
+    }
 
     public String getTitle() {
         return title;
@@ -89,4 +108,40 @@ public class G_Article {
     public void setWriter(String writer) {
         this.writer = writer;
     }
+
+    public String getRepoInfo() {
+        return repoInfo;
+    }
+
+    public void setRepoInfo(String repoInfo) {
+        this.repoInfo = repoInfo;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
+    }
+
+    public CBNArticle transferTo(){
+        CBNArticle a = new CBNArticle();
+        a.setContent(this.getContent());
+        a.sethCode(this.blogSeq);
+        a.setTitle(this.title);
+        a.setMarkdownContent(this.getMdContent());
+        a.setSha(this.sha);
+        a.setRepoInfo(this.repoInfo);
+        return a;
+    }
+
+
+    public static G_Article transferFrom(CBNArticle article){
+        G_Article gArticle = new G_Article();
+        gArticle.blogSeq = article.gethCode();
+        gArticle.setContent(article.getContent());
+        gArticle.setMdContent(article.getMarkdownContent());
+        gArticle.sha = article.getSha();
+        gArticle.title = article.getTitle();
+        gArticle.repoInfo = article.getRepoInfo();
+        return gArticle;
+    }
+
 }
