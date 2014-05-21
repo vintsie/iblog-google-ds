@@ -41,7 +41,7 @@ public class G_Article {
     private String repoInfo;
 
     public String getContent() {
-        return content.toString();
+        return content.getValue();
     }
 
     public void setContent(String content) {
@@ -50,7 +50,7 @@ public class G_Article {
 
 
     public String getMdContent() {
-        return mdContent.toString();
+        return mdContent.getValue();
     }
 
     public void setMdContent(String mdContent) {
@@ -129,6 +129,7 @@ public class G_Article {
         a.setMarkdownContent(this.getMdContent());
         a.setSha(this.sha);
         a.setRepoInfo(this.repoInfo);
+        a.setCreateDate(this.createDate);
         return a;
     }
 
