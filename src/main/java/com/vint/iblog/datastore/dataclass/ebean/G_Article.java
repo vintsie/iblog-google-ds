@@ -142,6 +142,7 @@ public class G_Article {
         gArticle.sha = article.getSha();
         gArticle.title = article.getTitle();
         gArticle.repoInfo = article.getRepoInfo();
+        gArticle.setCreateDate(article.getCreateDate());
         return gArticle;
     }
 

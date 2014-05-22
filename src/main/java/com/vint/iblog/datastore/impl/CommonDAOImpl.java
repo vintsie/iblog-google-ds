@@ -1,6 +1,9 @@
 package com.vint.iblog.datastore.impl;
 
 import com.vint.iblog.datastore.PMF;
+import com.vint.iblog.datastore.dataclass.config.G_Sequence;
+import com.vint.iblog.datastore.dataclass.config.G_StaticData;
+import com.vint.iblog.datastore.dataclass.ebean.G_Article;
 import com.vint.iblog.datastore.dataclass.ebean.G_GitHubCatalog;
 import com.vint.iblog.datastore.define.CommonDAO;
 import org.vint.iblog.common.bean.nor.CBNGitHubCatalog;
@@ -14,6 +17,13 @@ import java.util.*;
  * Created by Vin on 14-5-17.
  */
 public class CommonDAOImpl implements CommonDAO {
+
+    static String[] initBeans = new String[]{
+            G_Sequence.class.getName(),
+            G_StaticData.class.getName(),
+            G_Article.class.getName(),
+            G_GitHubCatalog.class.getName()
+    };
 
     @Override
     public List<CBNGitHubCatalog> getGitHubCatalogs() throws Exception {
@@ -42,6 +52,19 @@ public class CommonDAOImpl implements CommonDAO {
     }
 
     @Override
+    public void initGoogleDs() throws Exception {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            for(String initBean : initBeans){
+                pm.makePersistent(Class.forName(initBean).newInstance());
+            }
+
+        } finally {
+            pm.close();
+        }
+    }
+
+    @Override
     public void saveGitHubCatalog(String owner, String repo, String path, String type) throws Exception {
         G_GitHubCatalog catalog = new G_GitHubCatalog();
         catalog.setOwner(owner);
@@ -64,4 +87,6 @@ public class CommonDAOImpl implements CommonDAO {
             pm.close();
         }
     }
+
+
 }
